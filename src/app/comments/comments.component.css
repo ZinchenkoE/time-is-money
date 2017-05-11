@@ -1,0 +1,17 @@
+table{
+    width: 100%;
+    text-align: left;
+}
+tr{
+
+}
+th, td{
+    padding: 10px 30px;
+
+}
+th{
+    border-bottom: 1px solid #e1e1e1;
+}
+.commentText{
+    border-bottom: 1px solid #e1e1e1;
+}
