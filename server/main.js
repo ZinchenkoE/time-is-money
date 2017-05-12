@@ -42,12 +42,15 @@ try{
         res.send('Hello Vova!!');
     });
     app.get('/comments', function (req, res) {
-        var page = req.query.page || 1;
+        var page   = req.query.page   || 1;
+        var sortBy = req.query.sortBy || 'comment_id';
+        var order  = req.query.order ===  'ASC' ? 'ASC' : 'DESC';
+        var offset = (page - 1) * 25;
 
         console.log(req.query.page);
 
         var query = 'SELECT `comment_id`, `parent_id`, `username`, `email`, `text`, `create_time`, `homepage` ' +
-                    'FROM `tim_comments` ORDER BY `comment_id` DESC LIMIT 25';
+                    'FROM `tim_comments` ORDER BY `' + sortBy + '` ' + order + ' LIMIT 25 OFFSET ' + offset;
         connection.query(query, function (err, comments) {
             if (err) throw err;
             connection.query('SELECT COUNT(*) AS comments_count FROM `tim_comments`', function (err, rows) {

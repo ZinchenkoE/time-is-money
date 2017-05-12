@@ -11,6 +11,7 @@ th, td{
 }
 th{
     border-bottom: 1px solid #e1e1e1;
+    cursor: pointer;
 }
 ul.pagination{
     margin: 50px 0 100px; text-align: center;

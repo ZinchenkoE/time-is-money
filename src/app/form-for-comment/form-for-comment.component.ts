@@ -9,11 +9,6 @@ import {Comment} from '../_shared/comment';
 	styleUrls: ['./form-for-comment.component.css']
 })
 export class FormForCommentComponent implements OnInit {
-	username_  = 'Евгений';
-	email_     = '380506487966@yandex.ua';
-	homepage_  = 'http://example.com';
-	text_      =  'Текст комментария Текст комментария Текст комментария';
-
 	message: string;
 	messageType: string;
 

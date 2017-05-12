@@ -4,9 +4,11 @@
 <table>
 	<thead>
 	<tr>
-		<th>Имя</th>
-		<th>E-mail</th>
-		<th>Дата</th>
+		<th (click)="changeSortBy('username')">Имя
+			<span *ngIf="activeSortBy === 'username'">{{(activeOrderAsc ? '&#8593;' : '&#8595;')}}</span>
+		</th>
+		<th (click)="changeSortBy('email')">E-mail</th>
+		<th (click)="changeSortBy('create_time')">Дата</th>
 		<th>Сообщение</th>
 	</tr>
 	</thead>
@@ -22,7 +24,7 @@
 	</tbody>
 </table>
 <ul class="pagination">
-	<li class="active" *ngFor="let page of countPage">{{page}}</li>
+	<li class="active" *ngFor="let page of countPage" (click)="changePage(page)">{{page}}</li>
 </ul>
 
 

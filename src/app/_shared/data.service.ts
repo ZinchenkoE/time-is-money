@@ -12,12 +12,14 @@ export class DataService {
 
 	constructor(private http: Http) {}
 
-	getComments(): Observable<any> {
-		const url = this.rootUrl + '/comments?page=5';
+	getComments(page: number = 1, sortBy: string = 'comment_id', orderAsc: boolean = true): Observable<any> {
 
-		// var params = new URLSearchParams();
-		// params.set('name', user.name);
-		// params.set('age', user.age);
+		let params = new URLSearchParams();
+		params.set('page', page.toString());
+		params.set('sortBy', sortBy);
+		params.set('order', orderAsc ? 'ASC' : 'DESC' );
+
+		const url = this.rootUrl + '/comments?' + params;
 
 		return this.http.get(url)
 			.map((resp: Response) => {
@@ -45,7 +47,6 @@ export class DataService {
 			})
 			.catch((error:any) =>{ return Observable.throw(error); });
 	}
-
 
 	sendComment(comment: Comment): Observable<number>{
 		const url = this.rootUrl + '/comments';
