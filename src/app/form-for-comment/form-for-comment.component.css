@@ -1,7 +1,8 @@
 form {
-     padding-top: 20px;
-     margin-bottom: 50px;
- }
+    padding-top: 20px;
+    margin: 0 auto 50px;
+    width: 500px;
+}
 
 input, textarea {
     display: block;
@@ -47,20 +48,34 @@ button {
     color: #fff;
     margin: 20px 0;
 }
-button[disabled]{
-    background: #ccc!important;
+
+button[disabled] {
+    background: #ccc !important;
 }
-button:hover{
+
+button:hover {
     transition: all 0.3s;
     background: #467a94;
 }
 
-.message.success{
+.message.success {
     color: green;
 }
-.message.error{
+
+.message.error {
     color: red;
 }
-.inputBox{
+
+.inputBox {
     position: relative;
+}
+
+.boxForHalf {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.boxForHalf .inputBox{
+    width: 50%;
 }

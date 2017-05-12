@@ -37,17 +37,14 @@ try{
         next();
     });
     app.get('/', function (req, res) {
-        console.log(req.ip, '____fdf_');
         // res.sendFile('/dist/index.html', { root: __dirname + '/../' });
-        res.send('Hello Vova!!');
+        res.send('Hello!!!');
     });
     app.get('/comments', function (req, res) {
         var page   = req.query.page   || 1;
         var sortBy = req.query.sortBy || 'comment_id';
         var order  = req.query.order ===  'ASC' ? 'ASC' : 'DESC';
         var offset = (page - 1) * 25;
-
-        console.log(req.query.page);
 
         var query = 'SELECT `comment_id`, `parent_id`, `username`, `email`, `text`, `create_time`, `homepage` ' +
                     'FROM `tim_comments` ORDER BY `' + sortBy + '` ' + order + ' LIMIT 25 OFFSET ' + offset;
@@ -81,7 +78,7 @@ try{
             }
         );
 
-        console.log(req.ip, '____________________');
+        console.log('____________________');
     });
     app.listen(config.get('port'), function () {
         console.log('App listening on port ' + config.get('port'))

@@ -1,20 +1,22 @@
 <form #myForm="ngForm" novalidate (ngSubmit)="onSubmit(myForm)">
-    <div class="inputBox">
-        <input type="text" name="username" placeholder="Имя"
-               required pattern="^[а-яА-ЯёЁЇїІіЄєa-zA-Z\s-\d]{1,50}$"
-               ngModel #username="ngModel">
-        <p class="error" *ngIf="username.invalid && username.touched && username.value === ''">
-            Поле обязательно для заполнения.
-        </p>
-        <p class="error" *ngIf="username.invalid && username.touched && username.value !== ''">
-            Допустимы только цифры и буквы.
-        </p>
-    </div>
-    <div class="inputBox">
-        <input type="email" name="email" placeholder="E-mail"
-               required pattern="^[0-9a-zA-Z_]+@[0-9a-zA-Z_]+?\.[0-9a-zA-Z]{2,3}$" ngModel #email="ngModel">
-        <p class="error" *ngIf="email.invalid && email.touched && email.value === ''">Поле обязательно для заполнения.</p>
-        <p class="error" *ngIf="email.invalid && email.touched && email.value !== '' ">Некоректный формат email.</p>
+    <div class="boxForHalf">
+        <div class="inputBox">
+            <input type="text" name="username" placeholder="Имя"
+                   required pattern="^[а-яА-ЯёЁЇїІіЄєa-zA-Z\s-\d]{1,50}$"
+                   ngModel #username="ngModel">
+            <p class="error" *ngIf="username.invalid && username.touched && username.value === ''">
+                Поле обязательно для заполнения.
+            </p>
+            <p class="error" *ngIf="username.invalid && username.touched && username.value !== ''">
+                Допустимы только цифры и буквы.
+            </p>
+        </div>
+        <div class="inputBox">
+            <input type="email" name="email" placeholder="E-mail"
+                   required pattern="^[0-9a-zA-Z_]+@[0-9a-zA-Z_]+?\.[0-9a-zA-Z]{2,3}$" ngModel #email="ngModel">
+            <p class="error" *ngIf="email.invalid && email.touched && email.value === ''">Поле обязательно для заполнения.</p>
+            <p class="error" *ngIf="email.invalid && email.touched && email.value !== '' ">Некоректный формат email.</p>
+        </div>
     </div>
     <div class="inputBox">
         <input type="url" name="homepage" placeholder="Homepage"

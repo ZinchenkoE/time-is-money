@@ -4,27 +4,35 @@
 <table>
 	<thead>
 	<tr>
-		<th (click)="changeSortBy('username')">Имя
+		<th (click)="changeSortBy('username')" class="canSort">Имя
 			<span *ngIf="activeSortBy === 'username'">{{(activeOrderAsc ? '&#8593;' : '&#8595;')}}</span>
 		</th>
-		<th (click)="changeSortBy('email')">E-mail</th>
-		<th (click)="changeSortBy('create_time')">Дата</th>
+		<th (click)="changeSortBy('email')" class="canSort">
+			E-mail
+			<span *ngIf="activeSortBy === 'email'">{{(activeOrderAsc ? '&#8593;' : '&#8595;')}}</span>
+		</th>
+		<th (click)="changeSortBy('create_time')" class="canSort">
+			Дата
+			<span *ngIf="activeSortBy === 'create_time'">{{(activeOrderAsc ? '&#8593;' : '&#8595;')}}</span>
+		</th>
 		<th>Сообщение</th>
+		<th>Ссылка</th>
 	</tr>
 	</thead>
 	<tbody>
 	<template ngFor let-comment [ngForOf]="comments">
-		<tr>
+		<tr class="line">
 			<td [attr.comment_id]="comment.comment_id">{{comment.username}}</td>
 			<td>{{comment.email}}</td>
 			<td>{{comment.create_time | date:"dd/MM/yyyy hh:mm"}}</td>
 			<td>{{comment.text}}</td>
+			<td>{{comment.homepage}}</td>
 		</tr>
 	</template>
 	</tbody>
 </table>
 <ul class="pagination">
-	<li class="active" *ngFor="let page of countPage" (click)="changePage(page)">{{page}}</li>
+	<li *ngFor="let page of countPage" (click)="changePage(page)" [class.active]="page === activePage">{{page}}</li>
 </ul>
 
 

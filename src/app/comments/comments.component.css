@@ -1,17 +1,23 @@
 table{
     width: 100%;
     text-align: left;
-}
-tr{
 
 }
 th, td{
-    padding: 10px 30px;
-
+    padding: 5px 15px;
 }
 th{
     border-bottom: 1px solid #e1e1e1;
+}
+th.canSort{
     cursor: pointer;
+    user-select: none;
+}
+th.canSort:hover{
+    color: #555;
+}
+tr.line td{
+    border-bottom: 1px solid #e1e1e1;
 }
 ul.pagination{
     margin: 50px 0 100px; text-align: center;
@@ -26,9 +32,11 @@ ul.pagination li{
     border-radius: 4px;
     font-family: sans-serif;
     cursor: pointer;
+    user-select: none;
 }
 ul.pagination li.active{
     border: 1px solid #d7d7d7;
     box-shadow: 0 0 15px 0 rgba(1, 1, 1, 0.1);
     color: #ffc94b;
 }
+
