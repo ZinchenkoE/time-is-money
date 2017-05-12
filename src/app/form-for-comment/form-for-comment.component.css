@@ -1,19 +1,66 @@
-form{
-    padding-top: 50px;
-    margin-bottom: 50px;
+form {
+     padding-top: 20px;
+     margin-bottom: 50px;
+ }
+
+input, textarea {
+    display: block;
+    width: 100%;
+    outline: none;
+    box-sizing: border-box;
+    resize: none;
+    font-family: sans-serif;
+    font-size: 12px;
+    border: 1px solid #dbdbdb;
+    border-radius: 2px; height: 36px;
+    color: #141e29;
+    margin-top: 20px;
 }
-input, textarea{
-    display: block; width: 100%; outline: none; box-sizing: border-box; resize: none;
-    font-family: sans-serif; font-size: 12px;
-    border: 1px solid #dbdbdb; border-radius: 2px; height: 36px;
-    color: #141e29; margin-bottom: 18px;
+
+input {
+    line-height: 36px;
+    padding: 0 15px;
 }
-input{ line-height: 36px; padding: 0 15px; }
-textarea{ height: 100px; padding: 15px; }
-p.error{
-    color: #e68a8a; font-family: sans-serif; font-size: 12px; line-height: 2;
+
+textarea {
+    height: 100px;
+    padding: 15px;
 }
-button{
-    text-transform: uppercase; width: 50%; line-height: 40px; outline: none; border: none; cursor: pointer;
-    background: #59B; color: #fff;
+
+p.error {
+    position: absolute;
+    top: 100%;
+    color: #e68a8a;
+    font-family: sans-serif;
+    font-size: 12px;
+    line-height: 1.2;
+}
+
+button {
+    text-transform: uppercase;
+    width: 50%;
+    line-height: 40px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    background: #59B;
+    color: #fff;
+    margin: 20px 0;
+}
+button[disabled]{
+    background: #ccc!important;
+}
+button:hover{
+    transition: all 0.3s;
+    background: #467a94;
+}
+
+.message.success{
+    color: green;
+}
+.message.error{
+    color: red;
+}
+.inputBox{
+    position: relative;
 }

@@ -12,6 +12,22 @@ th, td{
 th{
     border-bottom: 1px solid #e1e1e1;
 }
-.commentText{
-    border-bottom: 1px solid #e1e1e1;
+ul.pagination{
+    margin: 50px 0 100px; text-align: center;
+}
+ul.pagination li{
+    display: inline-block;
+    color: #141e29;
+    line-height: 20px;
+    font-size: 14px;
+    width: 28px;
+    height: 20px;
+    border-radius: 4px;
+    font-family: sans-serif;
+    cursor: pointer;
+}
+ul.pagination li.active{
+    border: 1px solid #d7d7d7;
+    box-shadow: 0 0 15px 0 rgba(1, 1, 1, 0.1);
+    color: #ffc94b;
 }

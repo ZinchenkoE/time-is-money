@@ -1,5 +1,5 @@
 import {Injectable} 	from '@angular/core';
-import {Http, Response} from '@angular/http';
+import {Http, Response, Headers, URLSearchParams} from '@angular/http';
 import {Observable} 	from "rxjs";
 import {Comment} 		from "./comment";
 import 'rxjs/add/operator/map';
@@ -12,33 +12,76 @@ export class DataService {
 
 	constructor(private http: Http) {}
 
-	getComments(): Observable<Comment[]> {
-		let url = this.rootUrl + '/comments';
+	getComments(): Observable<any> {
+		const url = this.rootUrl + '/comments?page=5';
+
+		// var params = new URLSearchParams();
+		// params.set('name', user.name);
+		// params.set('age', user.age);
+
 		return this.http.get(url)
 			.map((resp: Response) => {
-				let commentsRaw = resp.json();
+				const commentsRaw = resp.json().comments;
+				const countPage = resp.json().countPages;
 				let comments: Comment[] = [];
-
-				if(!commentsRaw.length) return comments;
+				console.log(commentsRaw);
+				if(!commentsRaw.length) return {};
 				commentsRaw.forEach((commentRaw) => {
-					let comment = new Comment(
+					const comment = new Comment(
 						commentRaw.comment_id,
 						commentRaw.parent_id,
 						commentRaw.username,
 						commentRaw.email,
 						commentRaw.text,
 						commentRaw.create_time,
+						commentRaw.homepage,
 					);
 					comments.push(comment);
 				});
-				return comments;
+				return {
+					comments: comments,
+					countPage: countPage
+				};
 			})
-			.catch(this.errorHandler);
+			.catch((error:any) =>{ return Observable.throw(error); });
 	}
 
-	errorHandler(err) {
-		console.error(err);
-		return Observable.throw(err);
+
+	sendComment(comment: Comment): Observable<number>{
+		const url = this.rootUrl + '/comments';
+		let data:any = comment;
+		data.browser = DataService.detectBrowser();
+		const body = JSON.stringify(data);
+
+		let headers = new Headers({ 'Content-Type': 'application/json;charset=utf-8' });
+		return this.http.post(url, body, { headers: headers })
+			.map((resp:Response)=>{
+				return +resp.status;
+			})
+			.catch((error:any) =>{return Observable.throw(error);});
+	}
+
+	static detectBrowser(){
+		let N = navigator.appName, ua= navigator.userAgent, tem;
+		let M = ua.match(/(opera|chrome|safari|firefox|msie)\/?\s*(\.?\d+(\.\d+)*)/i);
+		if(M && (tem= ua.match(/version\/([.\d]+)/i))!== null) M[2]= tem[1];
+		M= M? [M[1], M[2]]: [N, navigator.appVersion,'-?'];
+		return JSON.stringify(M)
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,15 +1,64 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, EventEmitter, Output} from '@angular/core';
+import {NgForm} from "@angular/forms";
+import {DataService} from "../_shared/data.service";
+import {Comment} from '../_shared/comment';
 
 @Component({
-  selector: 'app-form-for-comment',
-  templateUrl: './form-for-comment.component.html',
-  styleUrls: ['./form-for-comment.component.css']
+	selector: 'app-form-for-comment',
+	templateUrl: './form-for-comment.component.html',
+	styleUrls: ['./form-for-comment.component.css']
 })
 export class FormForCommentComponent implements OnInit {
+	username_  = 'Евгений';
+	email_     = '380506487966@yandex.ua';
+	homepage_  = 'http://example.com';
+	text_      =  'Текст комментария Текст комментария Текст комментария';
 
-  constructor() { }
+	message: string;
+	messageType: string;
 
-  ngOnInit() {
-  }
+	@Output() onSendComment: EventEmitter<Comment>;
+
+	constructor(private dataService: DataService) {
+		this.onSendComment = new EventEmitter<Comment>();
+	}
+
+	ngOnInit() {}
+
+	onSubmit(form: NgForm) {
+		console.log(form);
+		const comment = new Comment(
+			0,
+			0,
+			form.value.username,
+			form.value.email,
+			form.value.text,
+			+new Date(),
+			form.value.homepage,
+		);
+		this.dataService.sendComment(comment).subscribe(
+			(status) => {
+				if(status === 200){
+					this.message = 'Комментарий успешно отправлен.';
+					this.messageType = 'success';
+					this.onSendComment.emit(comment);
+					form.reset();
+				}else{
+					this.message = 'Ошибка при сохранении комментария.';
+					this.messageType = 'error';
+				}
+			}
+		);
+	}
 
 }
+
+
+
+
+
+
+
+
+
+

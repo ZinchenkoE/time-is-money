@@ -1,18 +1,29 @@
+
+<app-form-for-comment (onSendComment)="pushComment($event)"></app-form-for-comment>
+
 <table>
-    <thead>
-        <tr>
-            <th>Имя</th>
-            <th>E-mail</th>
-            <th>Дата</th>
-            <th>Сообщение</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let comment of comments" >
-            <td [attr.comment_id]="comment.comment_id">{{comment.username}}</td>
-            <td>{{comment.email}}</td>
-            <td>{{comment.create_time | date:"dd/MM/yyyy hh:mm"}}</td>
-            <td>{{comment.text}}</td>
-        </tr>
-    </tbody>
+	<thead>
+	<tr>
+		<th>Имя</th>
+		<th>E-mail</th>
+		<th>Дата</th>
+		<th>Сообщение</th>
+	</tr>
+	</thead>
+	<tbody>
+	<template ngFor let-comment [ngForOf]="comments">
+		<tr>
+			<td [attr.comment_id]="comment.comment_id">{{comment.username}}</td>
+			<td>{{comment.email}}</td>
+			<td>{{comment.create_time | date:"dd/MM/yyyy hh:mm"}}</td>
+			<td>{{comment.text}}</td>
+		</tr>
+	</template>
+	</tbody>
 </table>
+<ul class="pagination">
+	<li class="active" *ngFor="let page of countPage">{{page}}</li>
+</ul>
+
+
+
