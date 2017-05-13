@@ -33,12 +33,12 @@ export class FormForCommentComponent implements OnInit {
 		);
 		this.dataService.sendComment(comment).subscribe(
 			(status) => {
-				if(status === 200){
+				if (status === 200) {
 					this.message = 'Комментарий успешно отправлен.';
 					this.messageType = 'success';
 					this.onSendComment.emit(comment);
 					form.reset();
-				}else{
+				} else {
 					this.message = 'Ошибка при сохранении комментария.';
 					this.messageType = 'error';
 				}

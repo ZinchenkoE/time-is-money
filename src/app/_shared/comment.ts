@@ -1,14 +1,4 @@
-interface CommentI {
-	comment_id: number,
-	parent_id: number,
-	username: string,
-	email: string,
-	text: string,
-	create_time: number,
-	homepage: number
-}
-
-export class Comment implements CommentI{
+export class Comment{
 	constructor(
 		public comment_id: number,
 		public parent_id: number,

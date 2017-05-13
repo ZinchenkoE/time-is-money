@@ -1,7 +1,7 @@
-import {Injectable} 	from '@angular/core';
+import {Injectable}    from '@angular/core';
 import {Http, Response, Headers, URLSearchParams} from '@angular/http';
-import {Observable} 	from "rxjs";
-import {Comment} 		from "./comment";
+import {Observable}    from "rxjs";
+import {Comment}        from "./comment";
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
@@ -17,7 +17,7 @@ export class DataService {
 		let params = new URLSearchParams();
 		params.set('page', page.toString());
 		params.set('sortBy', sortBy);
-		params.set('order', orderAsc ? 'ASC' : 'DESC' );
+		params.set('order', orderAsc ? 'ASC' : 'DESC');
 
 		const url = this.rootUrl + '/comments?' + params;
 
@@ -27,7 +27,7 @@ export class DataService {
 				const countPage = resp.json().countPages;
 				let comments: Comment[] = [];
 				console.log(commentsRaw);
-				if(!commentsRaw.length) return {};
+				if (!commentsRaw.length) return {};
 				commentsRaw.forEach((commentRaw) => {
 					const comment = new Comment(
 						commentRaw.comment_id,
@@ -45,44 +45,33 @@ export class DataService {
 					countPage: countPage
 				};
 			})
-			.catch((error:any) =>{ return Observable.throw(error); });
+			.catch((error: any) => {
+				return Observable.throw(error);
+			});
 	}
 
-	sendComment(comment: Comment): Observable<number>{
+	sendComment(comment: Comment): Observable<number> {
 		const url = this.rootUrl + '/comments';
-		let data:any = comment;
+		let data: any = comment;
 		data.browser = DataService.detectBrowser();
 		const body = JSON.stringify(data);
 
-		let headers = new Headers({ 'Content-Type': 'application/json;charset=utf-8' });
-		return this.http.post(url, body, { headers: headers })
-			.map((resp:Response)=>{
+		let headers = new Headers({'Content-Type': 'application/json;charset=utf-8'});
+		return this.http.post(url, body, {headers: headers})
+			.map((resp: Response) => {
 				return +resp.status;
 			})
-			.catch((error:any) =>{return Observable.throw(error);});
+			.catch((error: any) => {
+				return Observable.throw(error);
+			});
 	}
 
-	static detectBrowser(){
-		let N = navigator.appName, ua= navigator.userAgent, tem;
+	static detectBrowser() {
+		let N = navigator.appName, ua = navigator.userAgent, tem;
 		let M = ua.match(/(opera|chrome|safari|firefox|msie)\/?\s*(\.?\d+(\.\d+)*)/i);
-		if(M && (tem= ua.match(/version\/([.\d]+)/i))!== null) M[2]= tem[1];
-		M= M? [M[1], M[2]]: [N, navigator.appVersion,'-?'];
+		if (M && (tem = ua.match(/version\/([.\d]+)/i)) !== null) M[2] = tem[1];
+		M = M ? [M[1], M[2]] : [N, navigator.appVersion, '-?'];
 		return JSON.stringify(M)
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

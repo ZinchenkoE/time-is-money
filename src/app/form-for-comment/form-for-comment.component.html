@@ -1,40 +1,38 @@
 <form #myForm="ngForm" novalidate (ngSubmit)="onSubmit(myForm)">
-    <div class="boxForHalf">
-        <div class="inputBox">
-            <input type="text" name="username" placeholder="Имя"
-                   required pattern="^[а-яА-ЯёЁЇїІіЄєa-zA-Z\s-\d]{1,50}$"
-                   ngModel #username="ngModel">
-            <p class="error" *ngIf="username.invalid && username.touched && username.value === ''">
-                Поле обязательно для заполнения.
-            </p>
-            <p class="error" *ngIf="username.invalid && username.touched && username.value !== ''">
-                Допустимы только цифры и буквы.
-            </p>
-        </div>
-        <div class="inputBox">
-            <input type="email" name="email" placeholder="E-mail"
-                   required pattern="^[0-9a-zA-Z_]+@[0-9a-zA-Z_]+?\.[0-9a-zA-Z]{2,3}$" ngModel #email="ngModel">
-            <p class="error" *ngIf="email.invalid && email.touched && email.value === ''">Поле обязательно для заполнения.</p>
-            <p class="error" *ngIf="email.invalid && email.touched && email.value !== '' ">Некоректный формат email.</p>
-        </div>
-    </div>
-    <div class="inputBox">
-        <input type="url" name="homepage" placeholder="Homepage"
-               pattern="^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?(\?[\w\=.\-+()$*;:—%!№'@#&]+)?$"
-               ngModel #homepage="ngModel">
-        <p class="error" *ngIf="homepage.invalid && homepage.touched">Некоректный формат url. Например http://example.com</p>
-    </div>
-    <div class="inputBox">
+	<div class="boxForHalf">
+		<div class="inputBox">
+			<input type="text" name="username" placeholder="Имя"
+				   required pattern="^[а-яА-ЯёЁЇїІіЄєa-zA-Z\s-\d]{1,50}$"
+				   ngModel #username="ngModel">
+			<p class="error" *ngIf="username.invalid && username.touched && username.value === ''">
+				Поле обязательно для заполнения.
+			</p>
+			<p class="error" *ngIf="username.invalid && username.touched && username.value !== ''">
+				Допустимы только цифры и буквы.
+			</p>
+		</div>
+		<div class="inputBox">
+			<input type="email" name="email" placeholder="E-mail"
+				   required pattern="^[0-9a-zA-Z_]+@[0-9a-zA-Z_]+?\.[0-9a-zA-Z]{2,3}$" ngModel #email="ngModel">
+			<p class="error" *ngIf="email.invalid && email.touched && email.value === ''">Поле обязательно для
+				заполнения.</p>
+			<p class="error" *ngIf="email.invalid && email.touched && email.value !== '' ">Некоректный формат email.</p>
+		</div>
+	</div>
+	<div class="inputBox">
+		<input type="url" name="homepage" placeholder="Homepage"
+			   pattern="^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?(\?[\w\=.\-+()$*;:—%!№'@#&]+)?$"
+			   ngModel #homepage="ngModel">
+		<p class="error" *ngIf="homepage.invalid && homepage.touched">Некоректный формат url. Например
+			http://example.com</p>
+	</div>
+	<div class="inputBox">
         <textarea name="text" placeholder="Комментарий" required ngModel #text="ngModel"
-                  pattern="^[\wа-яА-ЯёЁЇїІіЄє,\s\\\/.\-+()$*?;:—%!№'@#&]{0,500}$"
-        ></textarea>
-        <p class="error" *ngIf="text.invalid && text.touched && text.value === ''">Поле обязательно для заполнения.</p>
-        <p class="error" *ngIf="text.invalid && text.touched && text.value !== '' ">Некоректный формат сообщения.</p>
-    </div>
-    <button type="submit" [disabled]="myForm.invalid">Отправить</button>
-    <div class="message {{messageType}}">{{message}}</div>
+				  pattern="^[\wа-яА-ЯёЁЇїІіЄє,\s\\\/.\-+()$*?;:—%!№'@#&]{0,500}$"
+		></textarea>
+		<p class="error" *ngIf="text.invalid && text.touched && text.value === ''">Поле обязательно для заполнения.</p>
+		<p class="error" *ngIf="text.invalid && text.touched && text.value !== '' ">Некоректный формат сообщения.</p>
+	</div>
+	<button type="submit" [disabled]="myForm.invalid">Отправить</button>
+	<div class="message {{messageType}}">{{message}}</div>
 </form>
-
-
-
-

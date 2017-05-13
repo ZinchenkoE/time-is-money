@@ -25,38 +25,26 @@ export class CommentsComponent implements OnInit {
 		this.comments.unshift(comment);
 	}
 
-	getComments(){
+	getComments() {
 		this.dataService.getComments(this.activePage, this.activeSortBy, this.activeOrderAsc).subscribe(
 			(data: any) => {
-				this.comments  = data.comments;
+				this.comments = data.comments;
 				this.countPage = [];
-				for(let i = 1; i <= data.countPage; i++) this.countPage.push(i);
+				for (let i = 1; i <= data.countPage; i++) this.countPage.push(i);
 				console.log(this.countPage);
 			}
 		);
 	}
 
-	changePage(page){
+	changePage(page) {
 		this.activePage = page;
 		this.getComments();
 	}
 
-	changeSortBy(sortBy){
-		if(this.activeSortBy === sortBy) this.activeOrderAsc = !this.activeOrderAsc;
+	changeSortBy(sortBy) {
+		if (this.activeSortBy === sortBy) this.activeOrderAsc = !this.activeOrderAsc;
 		else this.activeSortBy = sortBy;
 		this.getComments();
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
