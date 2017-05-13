@@ -8,7 +8,7 @@ import 'rxjs/add/observable/throw';
 
 @Injectable()
 export class DataService {
-	rootUrl: string = 'http://localhost:8090';
+	rootUrl: string = 'http://178.165.89.97:8090';
 
 	constructor(private http: Http) {}
 
